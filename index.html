@@ -17,6 +17,7 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 .wallet-line:last-of-type{border-bottom:0}.wallet-label{color:var(--muted);font-size:13px}.wallet-value{text-align:right;overflow-wrap:anywhere;font-size:13px}
 .wallet-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.wallet-actions .btn{padding:9px 12px;font-size:13px}
 .wallet-message{color:var(--muted);font-size:12px;margin:10px 0 0}.wallet-message.error{color:#ff9c8f}.wallet-message.good{color:#7ee6aa}
+.transfer-box{margin-top:16px;padding-top:14px;border-top:1px solid #ffffff18}.transfer-box h4{margin:0 0 8px;color:var(--gold2)}.transfer-box label{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}.transfer-box input{width:100%;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:#080808;color:var(--text);font:inherit;outline:none}.transfer-box input:focus{border-color:var(--gold)}.transfer-box .btn{margin-top:12px}.tx-link{display:block;color:var(--gold2);font-size:12px;overflow-wrap:anywhere;margin-top:8px}
 
 .stage{min-height:330px;display:grid;place-items:center;position:relative}.orbit{width:min(330px,75vw);aspect-ratio:1;border:1px solid #f5c54244;border-radius:50%;position:absolute;box-shadow:0 0 60px #f5c54212}.orbit:after{content:"";position:absolute;inset:18px;border:1px dashed #f5c54244;border-radius:50%}.hero-logo{width:min(410px,88vw);height:auto;max-height:410px;object-fit:contain;z-index:1;filter:drop-shadow(0 22px 35px #000b) drop-shadow(0 0 22px #f5c54222)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px auto 55px}.card{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#ffffff0c,#ffffff03)}.label{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.value{color:var(--gold2);font-size:clamp(19px,2.5vw,27px);font-weight:850;margin-top:7px}section{padding:30px 0 48px}.head{max-width:700px;margin-bottom:24px}.head h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.head p,.card p{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contract{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#080808;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}.address{overflow-wrap:anywhere;color:var(--gold2);font:13px ui-monospace,Consolas,monospace}.copy{background:#191407;color:var(--gold2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;flex-shrink:0}.pill{display:inline-block;color:#65e6a2;border:1px solid #65e6a244;border-radius:99px;padding:4px 10px;font-size:12px}.warning{border-color:#a77924}.warning p{color:#e5d6ac}
@@ -53,7 +54,18 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
   <div class="wallet-line"><span class="wallet-label">Jaringan</span><span class="wallet-value" id="walletNetwork">—</span></div>
   <div class="wallet-line"><span class="wallet-label">Saldo RST</span><span class="wallet-value" id="walletBalance">—</span></div>
   <div class="wallet-actions"><button class="btn secondary" id="switchNetwork" type="button">Gunakan Sepolia</button><button class="btn secondary" id="refreshBalance" type="button">Perbarui Saldo</button></div>
-  <p class="wallet-message" id="walletMessage">Koneksi hanya membaca alamat dan saldo. Transaksi tetap memerlukan konfirmasi di wallet.</p>
+  <div class="transfer-box">
+    <h4>🪙 Kirim RST</h4>
+    <p class="wallet-message">Transfer token akan diproses di Sepolia dan memerlukan SepoliaETH untuk biaya gas. Periksa alamat dan jumlah sebelum menyetujui MetaMask.</p>
+    <label for="recipientAddress">Alamat wallet penerima</label>
+    <input id="recipientAddress" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="0x..." aria-label="Alamat wallet penerima">
+    <label for="transferAmount">Jumlah RST</label>
+    <input id="transferAmount" type="number" min="0.000000000000000001" step="any" inputmode="decimal" placeholder="Contoh: 1.5" aria-label="Jumlah RST yang akan dikirim">
+    <button class="btn" id="sendRST" type="button">Kirim RST via MetaMask</button>
+    <p class="wallet-message" id="transferMessage" role="status" aria-live="polite">Belum ada transaksi.</p>
+    <a class="tx-link" id="transferTxLink" href="#" target="_blank" rel="noopener" hidden></a>
+  </div>
+  <p class="wallet-message" id="walletMessage">Koneksi wallet hanya membaca alamat dan saldo. Setiap transfer memerlukan persetujuan Anda di MetaMask.</p>
 </div>
 
 </div><div class="stage" aria-label="Logo resmi RUSTCOIN"><div class="orbit"></div><img class="hero-logo" src="RUSTCOIN_LOGO.png" alt="Koin emas hitam RUSTCOIN dengan simbol R dan tulisan RST"></div></div>
@@ -168,6 +180,9 @@ const walletNetworkEl=document.getElementById("walletNetwork");
 const walletBalanceEl=document.getElementById("walletBalance");
 const walletMessageEl=document.getElementById("walletMessage");
 const switchNetworkButton=document.getElementById("switchNetwork");
+const sendButton=document.getElementById("sendRST");
+const transferMessageEl=document.getElementById("transferMessage");
+const transferTxLink=document.getElementById("transferTxLink");
 let activeAccount=null;
 let activeChain=null;
 
@@ -225,6 +240,70 @@ async function refreshWalletDetails(){
     setWalletMessage("Gagal membaca saldo. Periksa jaringan Sepolia dan coba Perbarui Saldo.","error");
   }
 }
+
+function setTransferMessage(message, kind=""){
+  transferMessageEl.textContent=message;
+  transferMessageEl.className="wallet-message"+(kind ? " "+kind : "");
+}
+function parseTokenUnits(value){
+  const text=String(value||"").trim();
+  if(!/^(?:\d+)(?:\.\d{1,18})?$/.test(text)) throw new Error("Masukkan jumlah positif dengan maksimal 18 angka desimal.");
+  const parts=text.split(".");
+  const whole=BigInt(parts[0]);
+  const fraction=BigInt(((parts[1]||"")+"0".repeat(18)).slice(0,18));
+  const units=whole*1000000000000000000n+fraction;
+  if(units<=0n) throw new Error("Jumlah RST harus lebih besar dari nol.");
+  return units.toString(16).padStart(64,"0");
+}
+function encodeTransfer(address, amountHex){
+  return "0xa9059cbb"+address.slice(2).toLowerCase().padStart(64,"0")+amountHex;
+}
+async function sendRST(){
+  transferTxLink.hidden=true;
+  transferTxLink.removeAttribute("href");
+  if(!window.ethereum){setTransferMessage("MetaMask tidak terdeteksi. Buka website di browser dengan MetaMask.","error");return;}
+  if(!activeAccount){setTransferMessage("Hubungkan wallet terlebih dahulu.","error");return;}
+  const recipient=document.getElementById("recipientAddress").value.trim();
+  const amount=document.getElementById("transferAmount").value;
+  if(!/^0x[a-fA-F0-9]{40}$/.test(recipient)){setTransferMessage("Alamat penerima tidak valid. Pastikan alamat berawalan 0x dan berjumlah 42 karakter.","error");return;}
+  if(recipient.toLowerCase()===activeAccount.toLowerCase()){setTransferMessage("Alamat penerima sama dengan wallet pengirim. Periksa kembali alamatnya.","error");return;}
+  let amountHex;
+  try{amountHex=parseTokenUnits(amount);}catch(error){setTransferMessage(error.message,"error");return;}
+  try{
+    setBusy(sendButton,true);
+    activeChain=await window.ethereum.request({method:"eth_chainId"});
+    if(activeChain!==SEPOLIA_CHAIN_ID){setTransferMessage("Pindahkan jaringan ke Sepolia dahulu dengan tombol Gunakan Sepolia.","error");return;}
+    setTransferMessage("Periksa detail transfer dan konfirmasi permintaan di MetaMask…");
+    const txHash=await window.ethereum.request({
+      method:"eth_sendTransaction",
+      params:[{from:activeAccount,to:CONTRACT,data:encodeTransfer(recipient,amountHex)}]
+    });
+    transferTxLink.href="https://sepolia.etherscan.io/tx/"+txHash;
+    transferTxLink.textContent="Lihat transaksi di Sepolia Etherscan ↗ ("+txHash.slice(0,12)+"…"+txHash.slice(-6)+")";
+    transferTxLink.hidden=false;
+    setTransferMessage("Transaksi dikirim. Tunggu konfirmasi blockchain sebelum menganggap token sudah diterima.","good");
+    statusEl.textContent="Permintaan transfer RST dikirim ke MetaMask.";
+    // Poll receipt briefly to update the message when the chain confirms it.
+    for(let i=0;i<12;i++){
+      await new Promise(resolve=>setTimeout(resolve,5000));
+      const receipt=await window.ethereum.request({method:"eth_getTransactionReceipt",params:[txHash]});
+      if(receipt){
+        if(receipt.status==="0x1"){
+          setTransferMessage("Transaksi berhasil dikonfirmasi di Sepolia. Perbarui saldo untuk melihat hasilnya.","good");
+          await refreshWalletDetails();
+        }else{
+          setTransferMessage("Transaksi tercatat tetapi gagal (reverted). Periksa detail transaksi di explorer.","error");
+        }
+        return;
+      }
+    }
+    setTransferMessage("Transaksi masih menunggu konfirmasi. Periksa tautan Etherscan untuk status terbaru.");
+  }catch(error){
+    if(error && error.code===4001) setTransferMessage("Transaksi dibatalkan di MetaMask. Tidak ada transfer yang disetujui.","error");
+    else setTransferMessage(error && error.message ? "Transfer gagal: "+error.message.slice(0,220) : "Transfer gagal. Periksa saldo RST, saldo SepoliaETH untuk gas, dan jaringan.","error");
+  }finally{setBusy(sendButton,false);}
+}
+
 async function connectWallet(){
   if(!window.ethereum){
     statusEl.textContent="MetaMask tidak terdeteksi. Buka website ini pada browser yang memiliki ekstensi MetaMask aktif.";
@@ -275,6 +354,7 @@ async function switchToSepolia(){
 }
 connectButton.addEventListener("click",connectWallet);
 switchNetworkButton.addEventListener("click",switchToSepolia);
+sendButton.addEventListener("click",sendRST);
 document.getElementById("refreshBalance").addEventListener("click",async()=>{
   if(!activeAccount){
     setWalletMessage("Hubungkan wallet terlebih dahulu.","error");
