@@ -12,7 +12,16 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 16px;border-radius:11px;background:linear-gradient(135deg,var(--gold2),#d49a18);border:1px solid var(--gold);color:#171106;font-weight:800;cursor:pointer}.btn.secondary{background:transparent;color:var(--gold2);border-color:var(--line)}.btn:disabled{opacity:.6}
 .hero{padding:70px 0 38px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}.eyebrow{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:6px 12px;color:var(--gold2);font-size:12px;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:20px 0;letter-spacing:-.04em}h1 span{color:var(--gold);text-shadow:0 0 24px #f5c54233}.lead{font-size:18px;color:#d2cfc5;max-width:600px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}.note,#status{font-size:13px;color:var(--muted);margin-top:16px}
 .stage{min-height:330px;display:grid;place-items:center;position:relative}.orbit{width:min(330px,75vw);aspect-ratio:1;border:1px solid #f5c54244;border-radius:50%;position:absolute;box-shadow:0 0 60px #f5c54212}.orbit:after{content:"";position:absolute;inset:18px;border:1px dashed #f5c54244;border-radius:50%}.hero-logo{width:min(410px,88vw);height:auto;max-height:410px;object-fit:contain;z-index:1;filter:drop-shadow(0 22px 35px #000b) drop-shadow(0 0 22px #f5c54222)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px auto 55px}.card{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#ffffff0c,#ffffff03)}.label{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.value{color:var(--gold2);font-size:clamp(19px,2.5vw,27px);font-weight:850;margin-top:7px}section{padding:30px 0 48px}.head{max-width:700px;margin-bottom:24px}.head h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.head p,.card p{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contract{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#080808;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}.address{overflow-wrap:anywhere;color:var(--gold2);font:13px ui-monospace,Consolas,monospace}.copy{background:#191407;color:var(--gold2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;flex-shrink:0}.pill{display:inline-block;color:#65e6a2;border:1px solid #65e6a244;border-radius:99px;padding:4px 10px;font-size:12px}.warning{border-color:#a77924}.warning p{color:#e5d6ac}.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border-left:3px solid var(--gold)}footer{border-top:1px solid var(--line);padding:25px 0 32px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.copyright{color:var(--gold2);font-weight:850}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px auto 55px}.card{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#ffffff0c,#ffffff03)}.label{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.value{color:var(--gold2);font-size:clamp(19px,2.5vw,27px);font-weight:850;margin-top:7px}section{padding:30px 0 48px}.head{max-width:700px;margin-bottom:24px}.head h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.head p,.card p{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contract{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#080808;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}.address{overflow-wrap:anywhere;color:var(--gold2);font:13px ui-monospace,Consolas,monospace}.copy{background:#191407;color:var(--gold2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;flex-shrink:0}.pill{display:inline-block;color:#65e6a2;border:1px solid #65e6a244;border-radius:99px;padding:4px 10px;font-size:12px}.warning{border-color:#a77924}.warning p{color:#e5d6ac}
+.allocation-list{display:grid;gap:16px;margin-top:22px}
+.allocation-row{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(120px,2fr) minmax(115px,.8fr);gap:14px;align-items:center}
+.allocation-name{font-weight:750}.allocation-detail{color:var(--muted);font-size:13px}
+.allocation-track{height:14px;border-radius:99px;background:#ffffff12;border:1px solid #ffffff16;overflow:hidden}
+.allocation-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#d49a18,var(--gold2));box-shadow:0 0 14px #f5c54222}
+.allocation-amount{text-align:right;color:var(--gold2);font-weight:850}
+.allocation-total{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:20px;padding-top:16px;font-weight:850}
+@media(max-width:600px){.allocation-row{grid-template-columns:1fr auto;gap:8px}.allocation-track{grid-column:1/-1;grid-row:2}.allocation-amount{text-align:right}}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border-left:3px solid var(--gold)}footer{border-top:1px solid var(--line);padding:25px 0 32px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.copyright{color:var(--gold2);font-weight:850}
 @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:48px;gap:10px}.stage{min-height:290px}.stats{grid-template-columns:repeat(2,1fr)}.grid,.roadmap{grid-template-columns:1fr}.navlinks{display:none}}@media(max-width:430px){.btn{width:100%}.card{padding:16px}.stats{gap:9px}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
@@ -64,14 +73,52 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
         <p>RST menggunakan fungsi standar ERC-20 seperti transfer, approve, dan transferFrom. Aktivitas transfer tidak menambah total suplai.</p>
       </article>
       <article class="card">
-        <h3>🧭 Alokasi masa depan</h3>
-        <p>Belum ada pembagian resmi untuk komunitas, pengembangan, likuiditas, atau penghargaan yang ditetapkan pada halaman ini. Alokasi masa depan harus diputuskan secara transparan sebelum diumumkan.</p>
+        <h3>🧭 Rencana alokasi</h3>
+        <p>Rancangan distribusi di bawah telah disetujui sebagai rencana tokenomics proyek. Ini belum berarti token sudah dipindahkan atau dikunci sesuai persentase tersebut di blockchain.</p>
       </article>
       <article class="card">
         <h3>⚠️ Status testnet</h3>
         <p>RST di Sepolia adalah token pengujian, bukan aset mainnet. Token testnet tidak memiliki nilai uang nyata dan tidak menjamin harga, listing, keuntungan, atau likuiditas.</p>
       </article>
     </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>📊 Rencana Distribusi 500.000.000 RST</h3>
+      <p>Persentase berikut adalah rencana alokasi untuk perencanaan proyek, bukan catatan distribusi on-chain yang telah dilaksanakan.</p>
+      <div class="allocation-list">
+        <div class="allocation-row">
+          <div><div class="allocation-name">Komunitas &amp; Ekosistem</div><div class="allocation-detail">Dukungan komunitas dan pertumbuhan ekosistem</div></div>
+          <div class="allocation-track"><div class="allocation-fill" style="width:30%"></div></div>
+          <div class="allocation-amount">30% · 150.000.000 RST</div>
+        </div>
+        <div class="allocation-row">
+          <div><div class="allocation-name">Pengembangan Proyek</div><div class="allocation-detail">Pengembangan teknologi dan dokumentasi</div></div>
+          <div class="allocation-track"><div class="allocation-fill" style="width:25%"></div></div>
+          <div class="allocation-amount">25% · 125.000.000 RST</div>
+        </div>
+        <div class="allocation-row">
+          <div><div class="allocation-name">Cadangan Proyek</div><div class="allocation-detail">Cadangan untuk kebutuhan proyek mendatang</div></div>
+          <div class="allocation-track"><div class="allocation-fill" style="width:20%"></div></div>
+          <div class="allocation-amount">20% · 100.000.000 RST</div>
+        </div>
+        <div class="allocation-row">
+          <div><div class="allocation-name">Insentif &amp; Penghargaan</div><div class="allocation-detail">Program insentif yang dirancang secara transparan</div></div>
+          <div class="allocation-track"><div class="allocation-fill" style="width:15%"></div></div>
+          <div class="allocation-amount">15% · 75.000.000 RST</div>
+        </div>
+        <div class="allocation-row">
+          <div><div class="allocation-name">Likuiditas Masa Depan</div><div class="allocation-detail">Rencana likuiditas jika proyek kelak memenuhi syarat</div></div>
+          <div class="allocation-track"><div class="allocation-fill" style="width:10%"></div></div>
+          <div class="allocation-amount">10% · 50.000.000 RST</div>
+        </div>
+      </div>
+      <div class="allocation-total"><span>Total Rencana Alokasi</span><span>100% · 500.000.000 RST</span></div>
+    </div>
+    <div class="card warning" style="margin-top:16px">
+      <h3>⚠️ Status Implementasi Distribusi</h3>
+      <p>Kontrak RST yang saat ini berada di Sepolia mencetak seluruh 500.000.000 RST ke wallet deployer saat deployment. Persentase pada bagian ini adalah rencana alokasi yang disetujui, bukan pembagian yang sudah dilakukan secara on-chain. Pelaksanaan alokasi memerlukan transaksi transfer terpisah atau mekanisme kontrak yang sesuai. Token Sepolia hanya untuk pengujian dan tidak memiliki nilai uang nyata.</p>
+    </div>
+
     <div class="card" style="margin-top:16px">
       <h3>Alamat kontrak</h3>
       <p>Periksa detail kontrak dan aktivitas RST di Sepolia Etherscan sebelum berinteraksi.</p>
