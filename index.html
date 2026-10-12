@@ -21,7 +21,7 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 .allocation-amount{text-align:right;color:var(--gold2);font-weight:850}
 .allocation-total{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:20px;padding-top:16px;font-weight:850}
 @media(max-width:600px){.allocation-row{grid-template-columns:1fr auto;gap:8px}.allocation-track{grid-column:1/-1;grid-row:2}.allocation-amount{text-align:right}}
-.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{border-left:3px solid var(--gold)}footer{border-top:1px solid var(--line);padding:25px 0 32px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.copyright{color:var(--gold2);font-weight:850}
+.roadmap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.step{border-left:3px solid var(--gold)}.roadmap .step{height:100%}.roadmap .step .pill{display:inline-block;margin-top:8px}footer{border-top:1px solid var(--line);padding:25px 0 32px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.copyright{color:var(--gold2);font-weight:850}
 @media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:48px;gap:10px}.stage{min-height:290px}.stats{grid-template-columns:repeat(2,1fr)}.grid,.roadmap{grid-template-columns:1fr}.navlinks{display:none}}@media(max-width:430px){.btn{width:100%}.card{padding:16px}.stats{gap:9px}}
 </style>
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
@@ -130,9 +130,15 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
   </div>
 </section>
 
-<section id="roadmap"><div class="wrap"><div class="head"><h2>Rencana Bertahap</h2><p>Ini adalah rencana pengembangan, bukan klaim bahwa seluruh tahap telah selesai.</p></div><div class="roadmap">
-<article class="card step"><h3>01 — Testnet</h3><p>Deploy kontrak, periksa suplai, uji transfer, dan dokumentasikan hasil.</p><span class="pill">Pengujian awal</span></article><article class="card step"><h3>02 — Dokumentasi</h3><p>Siapkan informasi proyek, panduan wallet, keamanan, dan penjelasan token.</p></article><article class="card step"><h3>03 — Evaluasi</h3><p>Tinjau kode, keamanan, aspek hukum, dan biaya sebelum mempertimbangkan mainnet.</p></article>
-</div></div></section>
+<section id="roadmap"><div class="wrap"><div class="head"><h2>Roadmap RUSTCOIN</h2><p>Rencana pengembangan bertahap. Status berikut adalah perencanaan, bukan klaim bahwa setiap tahap sudah selesai.</p></div><div class="roadmap">
+<article class="card step"><h3>01 — Testnet</h3><p>Melakukan pengujian kontrak ERC-20 di Sepolia, memeriksa suplai, menguji transfer token, serta mencatat hasil pengujian.</p><span class="pill">Tahap pengujian</span></article>
+<article class="card step"><h3>02 — Dokumentasi</h3><p>Menyempurnakan website, tokenomics, panduan wallet, informasi kontrak, dan panduan keamanan untuk pengguna.</p><span class="pill">Penyusunan informasi</span></article>
+<article class="card step"><h3>03 — Evaluasi Keamanan</h3><p>Meninjau kode kontrak, menguji skenario transaksi, memeriksa risiko, serta mempertimbangkan peninjauan independen sebelum langkah lanjutan.</p><span class="pill">Perlu peninjauan</span></article>
+<article class="card step"><h3>04 — Komunitas</h3><p>Menyusun aturan partisipasi, kanal informasi resmi, dan rencana kegiatan edukasi yang transparan tanpa menjanjikan keuntungan.</p><span class="pill">Rencana komunitas</span></article>
+<article class="card step"><h3>05 — Evaluasi Mainnet</h3><p>Mengkaji kesiapan teknis, keamanan, biaya, kepatuhan hukum, dan kebutuhan proyek sebelum memutuskan apakah peluncuran mainnet layak dilakukan.</p><span class="pill">Belum diputuskan</span></article>
+</div>
+<div class="card" style="margin-top:16px"><h3>🔎 Prinsip pengembangan</h3><p>Keamanan, dokumentasi, dan transparansi menjadi prioritas. Roadmap dapat berubah berdasarkan hasil pengujian dan evaluasi. Tidak ada tanggal peluncuran mainnet yang dijanjikan pada tahap ini.</p></div>
+</div></section>
 </main>
 <footer><div class="wrap foot"><div><strong>RUSTCOIN (RST)</strong><br>Halaman informasi proyek testnet.</div><div class="copyright">HAK CIPTA RUSTAM, S.E.</div><div>© <span id="year"></span> RUSTCOIN • Edukasi Web3</div></div></footer>
 <script>
