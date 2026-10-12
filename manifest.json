@@ -8,5 +8,13 @@
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#080808",
-  "theme_color": "#080808"
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "./RUSTCOIN_LOGO.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }
