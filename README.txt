@@ -1,23 +1,23 @@
-RUSTCOIN (RST) — WEBSITE STARTER
-=================================
-File utama: index.html
+RUSTCOIN (RST) — WEBSITE STARTER V2
+====================================
+File yang diperlukan:
+- index.html
+- RUSTCOIN_LOGO.png
 
-Cara mencoba:
-1. Ekstrak ZIP.
-2. Buka index.html untuk melihat desain.
-3. Untuk fitur MetaMask yang lebih andal, host lewat HTTPS atau localhost dan buka menggunakan browser dengan MetaMask aktif.
+Cara upload ke GitHub:
+1. Buka repositori RUSTCOIN di GitHub.
+2. Klik Add file > Upload files.
+3. Unggah KEDUA file: index.html dan RUSTCOIN_LOGO.png ke direktori utama (root) repositori.
+4. Klik Commit changes.
+5. Buka Settings > Pages, pilih Deploy from a branch, branch main, folder /(root), lalu Save.
+6. Tunggu proses publikasi selesai.
 
-Detail yang ditampilkan:
-- Nama: RUSTCOIN
-- Simbol: RST
-- Total suplai: 500.000.000 RST
-- Desimal: 18
-- Jaringan: Sepolia Testnet (Chain ID 11155111)
-- Alamat kontrak: 0x3343f3De4dbCBB361823c7E571EAc2FF78C14109
+Alamat kontrak Sepolia yang ditampilkan:
+0x3343f3De4dbCBB361823c7E571EAc2FF78C14109
 
-Catatan:
-- Ini website awal untuk proyek TESTNET, bukan peluncuran mainnet.
-- Sepolia ETH dan RST testnet tidak memiliki nilai uang nyata.
-- Fitur hubungkan wallet hanya meminta koneksi akun dan membaca jaringan. Situs tidak meminta seed phrase/private key dan tidak mengirim transaksi.
-- Sebelum mainnet, lakukan review keamanan, verifikasi kontrak, dokumentasi, dan evaluasi hukum.
+Penting:
+- Website ini adalah halaman informasi untuk deployment Sepolia Testnet, bukan peluncuran Ethereum Mainnet.
+- Token dan ETH testnet tidak memiliki nilai uang nyata.
+- Tombol koneksi wallet hanya meminta koneksi akun dan membaca chain ID; website tidak meminta seed phrase/private key dan tidak mengirim transaksi.
+- Sebelum mempertimbangkan mainnet, lakukan audit keamanan, verifikasi kontrak, dokumentasi, dan evaluasi hukum.
 HAK CIPTA RUSTAM, S.E.
