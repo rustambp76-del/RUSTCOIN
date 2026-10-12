@@ -22,7 +22,7 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 <body>
 <header><div class="wrap"><nav>
 <a class="brand" href="#top"><img class="brand-logo" src="RUSTCOIN_LOGO.png" alt="Logo RUSTCOIN"><span>RUSTCOIN<small>RST DIGITAL TOKEN</small></span></a>
-<div class="navlinks"><a href="#about">Tentang</a><a href="#token">Token</a><a href="#contract">Kontrak</a><a href="#roadmap">Rencana</a></div>
+<div class="navlinks"><a href="#about">Tentang</a><a href="#token">Token</a><a href="#tokenomics">Tokenomics</a><a href="#contract">Kontrak</a><a href="#roadmap">Rencana</a></div>
 <button class="btn" id="connect">Hubungkan Wallet</button>
 </nav></div></header>
 <main id="top">
@@ -41,6 +41,48 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 <div class="card"><span class="pill">● Kontrak Sepolia</span><h3 style="margin-top:14px">Alamat Kontrak RUSTCOIN</h3><div class="contract"><div class="address" id="addr">0x3343f3De4dbCBB361823c7E571EAc2FF78C14109</div><button class="copy" id="copy">Salin</button></div>
 <div class="actions"><a class="btn" target="_blank" rel="noopener" href="https://sepolia.etherscan.io/address/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109">Lihat Alamat Kontrak ↗</a><a class="btn secondary" target="_blank" rel="noopener" href="https://sepolia.etherscan.io/token/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109">Lihat Token Tracker ↗</a></div></div>
 <div class="card warning" style="margin-top:16px"><h3>⚠️ Catatan Penting</h3><p>RUSTCOIN pada halaman ini adalah deployment Sepolia Testnet. Sepolia ETH dan RST testnet bukan aset uang nyata. Halaman ini tidak menjanjikan keuntungan, harga, listing bursa, atau likuiditas. Pastikan alamat kontrak dan jaringan sebelum transaksi.</p></div></div></section>
+
+<section id="tokenomics">
+  <div class="wrap">
+    <div class="head">
+      <h2>Tokenomics RUSTCOIN</h2>
+      <p>Informasi dasar token berdasarkan kontrak RUSTCOIN yang diterapkan di Sepolia Testnet. Bagian distribusi menjelaskan kondisi kontrak saat ini, bukan janji alokasi untuk masa depan.</p>
+    </div>
+    <div class="stats">
+      <div class="card"><div class="label">Total Suplai</div><div class="value">500.000.000 RST</div><p>Suplai awal tetap pada kontrak saat ini.</p></div>
+      <div class="card"><div class="label">Desimal</div><div class="value">18</div><p>Standar token ERC-20.</p></div>
+      <div class="card"><div class="label">Token Baru</div><div class="value">Tidak</div><p>Kontrak saat ini tidak menyediakan fungsi mint tambahan.</p></div>
+      <div class="card"><div class="label">Jaringan</div><div class="value">Sepolia</div><p>Token uji untuk pembelajaran dan pengembangan.</p></div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <h3>📦 Suplai dan penerbitan</h3>
+        <p>Kontrak mencetak 500.000.000 RST saat deployment. Semua token awal dikirim ke alamat wallet yang melakukan deployment. Ini menjelaskan distribusi awal pada kontrak saat ini.</p>
+      </article>
+      <article class="card">
+        <h3>🔁 Transfer token</h3>
+        <p>RST menggunakan fungsi standar ERC-20 seperti transfer, approve, dan transferFrom. Aktivitas transfer tidak menambah total suplai.</p>
+      </article>
+      <article class="card">
+        <h3>🧭 Alokasi masa depan</h3>
+        <p>Belum ada pembagian resmi untuk komunitas, pengembangan, likuiditas, atau penghargaan yang ditetapkan pada halaman ini. Alokasi masa depan harus diputuskan secara transparan sebelum diumumkan.</p>
+      </article>
+      <article class="card">
+        <h3>⚠️ Status testnet</h3>
+        <p>RST di Sepolia adalah token pengujian, bukan aset mainnet. Token testnet tidak memiliki nilai uang nyata dan tidak menjamin harga, listing, keuntungan, atau likuiditas.</p>
+      </article>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>Alamat kontrak</h3>
+      <p>Periksa detail kontrak dan aktivitas RST di Sepolia Etherscan sebelum berinteraksi.</p>
+      <div class="actions">
+        <a class="btn" target="_blank" rel="noopener" href="https://sepolia.etherscan.io/token/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109">Lihat Token Tracker ↗</a>
+        <a class="btn secondary" target="_blank" rel="noopener" href="https://sepolia.etherscan.io/address/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109">Lihat Kontrak ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="roadmap"><div class="wrap"><div class="head"><h2>Rencana Bertahap</h2><p>Ini adalah rencana pengembangan, bukan klaim bahwa seluruh tahap telah selesai.</p></div><div class="roadmap">
 <article class="card step"><h3>01 — Testnet</h3><p>Deploy kontrak, periksa suplai, uji transfer, dan dokumentasikan hasil.</p><span class="pill">Pengujian awal</span></article><article class="card step"><h3>02 — Dokumentasi</h3><p>Siapkan informasi proyek, panduan wallet, keamanan, dan penjelasan token.</p></article><article class="card step"><h3>03 — Evaluasi</h3><p>Tinjau kode, keamanan, aspek hukum, dan biaya sebelum mempertimbangkan mainnet.</p></article>
 </div></div></section>
