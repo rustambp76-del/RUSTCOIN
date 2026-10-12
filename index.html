@@ -11,6 +11,13 @@ a{color:inherit;text-decoration:none}.wrap{width:min(1100px,calc(100% - 32px));m
 nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}.coin{width:42px;height:42px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:24px;box-shadow:0 0 22px #f5c54233}.brand-logo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 0 8px #f5c54233)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.2em}.navlinks{display:flex;gap:20px;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--gold2)}
 .btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:12px 16px;border-radius:11px;background:linear-gradient(135deg,var(--gold2),#d49a18);border:1px solid var(--gold);color:#171106;font-weight:800;cursor:pointer}.btn.secondary{background:transparent;color:var(--gold2);border-color:var(--line)}.btn:disabled{opacity:.6}
 .hero{padding:70px 0 38px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}.eyebrow{display:inline-block;border:1px solid var(--line);border-radius:99px;padding:6px 12px;color:var(--gold2);font-size:12px;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:20px 0;letter-spacing:-.04em}h1 span{color:var(--gold);text-shadow:0 0 24px #f5c54233}.lead{font-size:18px;color:#d2cfc5;max-width:600px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}.note,#status{font-size:13px;color:var(--muted);margin-top:16px}
+.wallet-panel{display:none;margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#17140c,#0d0d0d);max-width:560px}
+.wallet-panel.visible{display:block}.wallet-panel h3{margin:0 0 10px;color:var(--gold2);font-size:16px}
+.wallet-line{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:7px 0;border-bottom:1px solid #ffffff12}
+.wallet-line:last-of-type{border-bottom:0}.wallet-label{color:var(--muted);font-size:13px}.wallet-value{text-align:right;overflow-wrap:anywhere;font-size:13px}
+.wallet-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.wallet-actions .btn{padding:9px 12px;font-size:13px}
+.wallet-message{color:var(--muted);font-size:12px;margin:10px 0 0}.wallet-message.error{color:#ff9c8f}.wallet-message.good{color:#7ee6aa}
+
 .stage{min-height:330px;display:grid;place-items:center;position:relative}.orbit{width:min(330px,75vw);aspect-ratio:1;border:1px solid #f5c54244;border-radius:50%;position:absolute;box-shadow:0 0 60px #f5c54212}.orbit:after{content:"";position:absolute;inset:18px;border:1px dashed #f5c54244;border-radius:50%}.hero-logo{width:min(410px,88vw);height:auto;max-height:410px;object-fit:contain;z-index:1;filter:drop-shadow(0 22px 35px #000b) drop-shadow(0 0 22px #f5c54222)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px auto 55px}.card{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(150deg,#ffffff0c,#ffffff03)}.label{color:var(--muted);font-size:12px;letter-spacing:.1em;text-transform:uppercase}.value{color:var(--gold2);font-size:clamp(19px,2.5vw,27px);font-weight:850;margin-top:7px}section{padding:30px 0 48px}.head{max-width:700px;margin-bottom:24px}.head h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.head p,.card p{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.contract{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#080808;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px}.address{overflow-wrap:anywhere;color:var(--gold2);font:13px ui-monospace,Consolas,monospace}.copy{background:#191407;color:var(--gold2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;flex-shrink:0}.pill{display:inline-block;color:#65e6a2;border:1px solid #65e6a244;border-radius:99px;padding:4px 10px;font-size:12px}.warning{border-color:#a77924}.warning p{color:#e5d6ac}
 .allocation-list{display:grid;gap:16px;margin-top:22px}
@@ -40,6 +47,15 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 <p class="lead">Proyek token digital untuk belajar, bereksperimen, dan membangun pengalaman Web3 secara bertanggung jawab.</p>
 <div class="actions"><a class="btn" href="#contract">Lihat Kontrak RST ↓</a><a class="btn secondary" target="_blank" rel="noopener" href="https://sepolia.etherscan.io/token/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109">Buka Explorer ↗</a></div>
 <p class="note">Status: token pengujian di Sepolia. Bukan token mainnet dan tidak memiliki nilai uang nyata.</p><div id="status" role="status" aria-live="polite"></div>
+<div class="wallet-panel" id="walletPanel" aria-live="polite">
+  <h3>👛 Status Wallet RUSTCOIN</h3>
+  <div class="wallet-line"><span class="wallet-label">Akun</span><span class="wallet-value" id="walletAddress">Belum terhubung</span></div>
+  <div class="wallet-line"><span class="wallet-label">Jaringan</span><span class="wallet-value" id="walletNetwork">—</span></div>
+  <div class="wallet-line"><span class="wallet-label">Saldo RST</span><span class="wallet-value" id="walletBalance">—</span></div>
+  <div class="wallet-actions"><button class="btn secondary" id="switchNetwork" type="button">Gunakan Sepolia</button><button class="btn secondary" id="refreshBalance" type="button">Perbarui Saldo</button></div>
+  <p class="wallet-message" id="walletMessage">Koneksi hanya membaca alamat dan saldo. Transaksi tetap memerlukan konfirmasi di wallet.</p>
+</div>
+
 </div><div class="stage" aria-label="Logo resmi RUSTCOIN"><div class="orbit"></div><img class="hero-logo" src="RUSTCOIN_LOGO.png" alt="Koin emas hitam RUSTCOIN dengan simbol R dan tulisan RST"></div></div>
 <div class="wrap stats" id="token">
 <div class="card"><div class="label">Nama Token</div><div class="value">RUSTCOIN</div></div><div class="card"><div class="label">Simbol</div><div class="value">RST</div></div><div class="card"><div class="label">Total Suplai</div><div class="value">500.000.000</div><p>RST • 18 desimal</p></div><div class="card"><div class="label">Jaringan</div><div class="value">Sepolia</div><p>Chain ID 11155111</p></div>
@@ -143,10 +159,155 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 <footer><div class="wrap foot"><div><strong>RUSTCOIN (RST)</strong><br>Halaman informasi proyek testnet.</div><div class="copyright">HAK CIPTA RUSTAM, S.E.</div><div>© <span id="year"></span> RUSTCOIN • Edukasi Web3</div></div></footer>
 <script>
 const CONTRACT="0x3343f3De4dbCBB361823c7E571EAc2FF78C14109";
+const SEPOLIA_CHAIN_ID="0xaa36a7";
 const statusEl=document.getElementById("status");
+const connectButton=document.getElementById("connect");
+const walletPanel=document.getElementById("walletPanel");
+const walletAddressEl=document.getElementById("walletAddress");
+const walletNetworkEl=document.getElementById("walletNetwork");
+const walletBalanceEl=document.getElementById("walletBalance");
+const walletMessageEl=document.getElementById("walletMessage");
+const switchNetworkButton=document.getElementById("switchNetwork");
+let activeAccount=null;
+let activeChain=null;
+
 document.getElementById("year").textContent=new Date().getFullYear();
-document.getElementById("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(CONTRACT);document.getElementById("copy").textContent="Tersalin ✓";setTimeout(()=>document.getElementById("copy").textContent="Salin",1800)}catch(e){statusEl.textContent="Salin alamat secara manual: "+CONTRACT}});
-document.getElementById("connect").addEventListener("click",async()=>{const b=document.getElementById("connect");if(!window.ethereum){statusEl.textContent="MetaMask tidak terdeteksi. Buka halaman ini di browser dengan MetaMask aktif.";return}try{b.disabled=true;const accounts=await window.ethereum.request({method:"eth_requestAccounts"});const chain=await window.ethereum.request({method:"eth_chainId"});const short=accounts[0].slice(0,6)+"…"+accounts[0].slice(-4);statusEl.textContent=chain==="0xaa36a7"?"Wallet terhubung: "+short+" • Sepolia ✓":"Wallet terhubung: "+short+" • Pilih Sepolia Testnet di MetaMask.";b.textContent="Wallet Terhubung"}catch(e){statusEl.textContent=e?.code===4001?"Permintaan koneksi dibatalkan.":"Koneksi wallet gagal. Coba lagi."}finally{b.disabled=false}});
-if(window.ethereum){window.ethereum.on?.("chainChanged",()=>statusEl.textContent="Jaringan berubah. Pastikan Sepolia dipilih.");window.ethereum.on?.("accountsChanged",()=>statusEl.textContent="Akun berubah. Hubungkan ulang jika diperlukan.")}
+
+function shortAddress(address){
+  return address ? address.slice(0,6)+"…"+address.slice(-4) : "Belum terhubung";
+}
+function setWalletMessage(message, kind=""){
+  walletMessageEl.textContent=message;
+  walletMessageEl.className="wallet-message"+(kind ? " "+kind : "");
+}
+function showWalletPanel(show=true){
+  walletPanel.classList.toggle("visible",show);
+}
+function setBusy(button,busy){
+  button.disabled=busy;
+}
+function chainName(chainId){
+  if(chainId===SEPOLIA_CHAIN_ID) return "Sepolia Testnet ✓";
+  if(chainId==="0x1") return "Ethereum Mainnet";
+  return "Jaringan lain ("+(chainId||"tidak diketahui")+")";
+}
+function encodeBalanceOf(address){
+  return "0x70a08231"+address.toLowerCase().replace(/^0x/,"").padStart(64,"0");
+}
+function formatTokenBalance(hexValue){
+  const raw=BigInt(hexValue || "0x0");
+  const whole=raw/1000000000000000000n;
+  const fraction=raw%1000000000000000000n;
+  const fracText=fraction.toString().padStart(18,"0").slice(0,6).replace(/0+$/,"");
+  return whole.toLocaleString("id-ID")+(fracText ? ","+fracText : "")+" RST";
+}
+async function refreshWalletDetails(){
+  if(!window.ethereum || !activeAccount) return;
+  try{
+    activeChain=await window.ethereum.request({method:"eth_chainId"});
+    walletAddressEl.textContent=shortAddress(activeAccount);
+    walletAddressEl.title=activeAccount;
+    walletNetworkEl.textContent=chainName(activeChain);
+    connectButton.textContent="Wallet "+shortAddress(activeAccount);
+    if(activeChain!==SEPOLIA_CHAIN_ID){
+      walletBalanceEl.textContent="—";
+      setWalletMessage("Pilih jaringan Sepolia untuk membaca saldo RST di kontrak testnet.","error");
+      return;
+    }
+    const balanceHex=await window.ethereum.request({
+      method:"eth_call",
+      params:[{to:CONTRACT,data:encodeBalanceOf(activeAccount)},"latest"]
+    });
+    walletBalanceEl.textContent=formatTokenBalance(balanceHex);
+    setWalletMessage("Wallet terhubung. Saldo dibaca dari kontrak RST di Sepolia; website tidak dapat memindahkan token.","good");
+  }catch(error){
+    walletBalanceEl.textContent="Tidak dapat dibaca";
+    setWalletMessage("Gagal membaca saldo. Periksa jaringan Sepolia dan coba Perbarui Saldo.","error");
+  }
+}
+async function connectWallet(){
+  if(!window.ethereum){
+    statusEl.textContent="MetaMask tidak terdeteksi. Buka website ini pada browser yang memiliki ekstensi MetaMask aktif.";
+    return;
+  }
+  setBusy(connectButton,true);
+  try{
+    const accounts=await window.ethereum.request({method:"eth_requestAccounts"});
+    if(!accounts || !accounts.length){
+      statusEl.textContent="Tidak ada akun yang dipilih di wallet.";
+      return;
+    }
+    activeAccount=accounts[0];
+    activeChain=await window.ethereum.request({method:"eth_chainId"});
+    showWalletPanel(true);
+    await refreshWalletDetails();
+    statusEl.textContent="Permintaan koneksi wallet berhasil.";
+  }catch(error){
+    statusEl.textContent=error && error.code===4001
+      ?"Koneksi dibatalkan di wallet."
+      :"Koneksi wallet gagal. Silakan coba lagi.";
+  }finally{
+    setBusy(connectButton,false);
+  }
+}
+async function switchToSepolia(){
+  if(!window.ethereum){
+    setWalletMessage("MetaMask tidak terdeteksi.","error");
+    return;
+  }
+  try{
+    await window.ethereum.request({
+      method:"wallet_switchEthereumChain",
+      params:[{chainId:SEPOLIA_CHAIN_ID}]
+    });
+    activeChain=SEPOLIA_CHAIN_ID;
+    if(activeAccount) await refreshWalletDetails();
+    setWalletMessage("Jaringan Sepolia aktif.","good");
+  }catch(error){
+    if(error && error.code===4902){
+      setWalletMessage("Sepolia belum tersedia di wallet. Tambahkan jaringan Sepolia di MetaMask, lalu coba lagi.","error");
+    }else if(error && error.code===4001){
+      setWalletMessage("Permintaan pergantian jaringan dibatalkan.","error");
+    }else{
+      setWalletMessage("Tidak dapat mengganti jaringan. Pilih Sepolia langsung dari MetaMask.","error");
+    }
+  }
+}
+connectButton.addEventListener("click",connectWallet);
+switchNetworkButton.addEventListener("click",switchToSepolia);
+document.getElementById("refreshBalance").addEventListener("click",async()=>{
+  if(!activeAccount){
+    setWalletMessage("Hubungkan wallet terlebih dahulu.","error");
+    return;
+  }
+  await refreshWalletDetails();
+});
+document.getElementById("copy").addEventListener("click",async()=>{
+  try{
+    await navigator.clipboard.writeText(CONTRACT);
+    document.getElementById("copy").textContent="Tersalin ✓";
+    setTimeout(()=>document.getElementById("copy").textContent="Salin",1800);
+  }catch(e){
+    statusEl.textContent="Salin alamat secara manual: "+CONTRACT;
+  }
+});
+
+if(window.ethereum){
+  window.ethereum.on?.("accountsChanged",(accounts)=>{
+    activeAccount=accounts && accounts.length ? accounts[0] : null;
+    if(!activeAccount){
+      showWalletPanel(false);
+      connectButton.textContent="Hubungkan Wallet";
+      statusEl.textContent="Wallet tidak terhubung.";
+      return;
+    }
+    showWalletPanel(true);
+    refreshWalletDetails();
+  });
+  window.ethereum.on?.("chainChanged",(chainId)=>{
+    activeChain=chainId;
+    if(activeAccount) refreshWalletDetails();
+  });
+}
 </script>
 </body></html>
