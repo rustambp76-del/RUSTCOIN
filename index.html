@@ -143,7 +143,23 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
     <p class="wallet-message" id="transferMessage" role="status" aria-live="polite">Belum ada transaksi.</p>
     <a class="tx-link" id="transferTxLink" href="#" target="_blank" rel="noopener" hidden></a>
   </div>
-  <p class="wallet-message" id="walletMessage">Koneksi wallet hanya membaca alamat dan saldo. Setiap transfer memerlukan persetujuan Anda di MetaMask.</p>
+  <div class="transfer-box" id="transactionHistory">
+  <h4>📜 Riwayat Transaksi RST</h4>
+  <p class="wallet-message">
+    Riwayat transaksi token dapat diperiksa melalui Sepolia Explorer.
+  </p>
+  <a
+    class="btn secondary"
+    id="viewTokenHistory"
+    href="https://sepolia.etherscan.io/token/0x3343f3De4dbCBB361823c7E571EAc2FF78C14109"
+    target="_blank"
+    rel="noopener noreferrer"
+  >🔎 Lihat Riwayat Token RST</a>
+  <p class="wallet-message">
+    Pastikan jaringan yang digunakan adalah Sepolia Testnet.
+  </p>
+</div>
+<p class="wallet-message" id="walletMessage">Koneksi wallet hanya membaca alamat dan saldo. Setiap transfer memerlukan persetujuan Anda di MetaMask.</p>
 </div>
 
 </div><div class="stage" aria-label="Logo resmi RUSTCOIN"><div class="orbit"></div><img class="hero-logo" src="RUSTCOIN_LOGO.png" alt="Koin emas hitam RUSTCOIN dengan simbol R dan tulisan RST"></div></div>
