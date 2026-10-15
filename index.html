@@ -515,5 +515,47 @@ if ("serviceWorker" in navigator) {
       });
   });
 }
+/* =========================================
+   RIWAYAT TRANSAKSI RUSTCOIN (RST)
+========================================= */
+async function loadRSTTransactionHistory() {
+  const historyBox = document.getElementById("transactionHistory");
+  if (!historyBox) return;
+  let historyList = document.getElementById("rstHistoryList");
+  if (!historyList) {
+    historyList = document.createElement("div");
+    historyList.id = "rstHistoryList";
+    historyList.className = "wallet-message";
+    historyBox.appendChild(historyList);
+  }
+  if (!activeAccount) {
+    historyList.textContent = "Hubungkan MetaMask untuk melihat riwayat transaksi wallet.";
+    return;
+  }
+  historyList.textContent = "Memuat riwayat transaksi...";
+  const explorerUrl =
+    "https://sepolia.etherscan.io/token/" +
+    CONTRACT_ADDRESS +
+    "?a=" +
+    activeAccount;
+  try {
+    historyList.replaceChildren();
+    const message = document.createElement("p");
+    message.className = "wallet-message";
+    message.textContent =
+      "Untuk melihat transaksi masuk dan keluar beserta waktu dan jumlahnya, buka riwayat wallet di Sepolia Explorer.";
+    const link = document.createElement("a");
+    link.className = "btn secondary";
+    link.href = explorerUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "🔎 Buka Riwayat Wallet";
+    historyList.appendChild(message);
+    historyList.appendChild(link);
+  } catch (error) {
+    historyList.textContent =
+      "Riwayat belum dapat ditampilkan. Silakan coba kembali.";
+  }
+}  
 </script>
 </body></html>
