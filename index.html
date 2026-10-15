@@ -121,7 +121,14 @@ nav{min-height:72px;display:flex;align-items:center;justify-content:space-betwee
 <p class="note">Status: token pengujian di Sepolia. Bukan token mainnet dan tidak memiliki nilai uang nyata.</p><div id="status" role="status" aria-live="polite"></div>
 <div class="wallet-panel" id="walletPanel" aria-live="polite">
   <h3>👛 Status Wallet RUSTCOIN</h3>
-  <div class="wallet-line"><span class="wallet-label">Akun</span><span class="wallet-value" id="walletAddress">Belum terhubung</span></div>
+  <div class="wallet-line">
+  <span class="wallet-label">Akun</span>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+    <span class="wallet-value" id="walletAddress">Belum terhubung</span>
+    <button class="btn secondary" id="copyWalletAddress" type="button" onclick="copyWalletAddress()">📋 Salin</button>
+  </div>
+</div>
+<p class="wallet-message" id="copyWalletMessage" role="status" aria-live="polite"></p>
   <div class="wallet-line"><span class="wallet-label">Jaringan</span><span class="wallet-value" id="walletNetwork">—</span></div>
   <div class="wallet-line"><span class="wallet-label">Saldo RST</span><span class="wallet-value" id="walletBalance">—</span></div>
   <div class="wallet-actions"><button class="btn secondary" id="switchNetwork" type="button">Gunakan Sepolia</button><button class="btn secondary" id="refreshBalance" type="button">Perbarui Saldo</button></div>
@@ -261,6 +268,26 @@ document.getElementById("year").textContent=new Date().getFullYear();
 
 function shortAddress(address){
   return address ? address.slice(0,6)+"…"+address.slice(-4) : "Belum terhubung";
+}
+async function copyWalletAddress(){
+  const message = document.getElementById("copyWalletMessage");
+  const address = activeAccount;
+
+  if (!address) {
+    message.textContent = "Hubungkan MetaMask terlebih dahulu.";
+    message.className = "wallet-message error";
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(address);
+    message.textContent = "Alamat wallet berhasil disalin!";
+    message.className = "wallet-message good";
+  } catch (error) {
+    message.textContent =
+      "Clipboard tidak tersedia. Silakan salin alamat ini secara manual: " + address;
+    message.className = "wallet-message error";
+  }
 }
 function setWalletMessage(message, kind=""){
   walletMessageEl.textContent=message;
